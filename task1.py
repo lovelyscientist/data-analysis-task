@@ -11,8 +11,9 @@ print(new_df)
 new_df['Dat1'] = pd.to_numeric(new_df['Dat1'], errors='coerce')
 new_df['Dat2'] = pd.to_numeric(new_df['Dat2'], errors='coerce')
 
-plt.plot(new_df['N'], new_df['Dat2'], linestyle='-')
-plt.ylabel('some numbers')
-plt.show()
+rolmean = pd.rolling_mean(new_df['Dat1'], window=200)
 
-print(new_df['Dat1'])
+plt.plot(new_df['N'], new_df['Dat1'], color='blue', label='Original')
+plt.plot(new_df['N'], rolmean, color='red', label='Rolling Mean')
+
+plt.show()
